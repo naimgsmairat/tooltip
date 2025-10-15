@@ -1,0 +1,119 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #7edaff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.center-box, .corner-box {
+  position: absolute;
+  width: 120px;
+  height: 45px;
+  background: white;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.center-box:hover,
+.corner-box:hover {
+  background: #f3f3f3;
+}
+
+.corner-box::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: #333;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  opacity: 0;
+  transform: scale(0.8);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+
+.corner-box:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.top-left::before {
+  right: 130%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+}
+.top-right::before {
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+}
+.bottom-left::before {
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+}
+.bottom-right::before {
+  left: 130%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+}
+
+.top-left { top: 0; left: 0; transform: translate(-40%, -40%); }
+.top-right { top: 0; right: 0; transform: translate(40%, -40%); }
+.bottom-left { bottom: 0; left: 0; transform: translate(-40%, 40%); }
+.bottom-right { bottom: 0; right: 0; transform: translate(40%, 40%); }
+
+
+.tooltip-image {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background: #333;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.tooltip-image img {
+  width: 100px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.center-box:hover .tooltip-image {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
